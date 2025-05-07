@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in); // Create one Scanner only
-        int choice = 0;
+        Scanner sc = new Scanner(System.in);
+        int choice;
 
         do {
             System.out.println("\n=== STUDENT DATABASE MENU ===");
+            System.out.println("0. Create Database");
             System.out.println("1. Create Student Table");
             System.out.println("2. Insert New Student");
             System.out.println("3. Display All Students");
@@ -18,28 +19,31 @@ public class Main {
 
             if (!sc.hasNextInt()) {
                 System.out.println("Please enter a valid number!");
-                sc.next(); // Clear the invalid input
+                sc.next();
                 continue;
             }
 
             choice = sc.nextInt();
-            sc.nextLine(); // Clear the newline
+            sc.nextLine();
 
             switch (choice) {
+                case 0:
+                    CreateDB.createDatabase();
+                    break;
                 case 1:
                     CreateStudentTable.createTable();
                     break;
                 case 2:
-                    InsertStudentDynamic.insertStudent(sc); // pass Scanner
+                    InsertStudentDynamic.insertStudent(sc);
                     break;
                 case 3:
                     DisplayStudents.display();
                     break;
                 case 4:
-                    UpdateStudent.update(sc); // pass Scanner
+                    UpdateStudent.update(sc);
                     break;
                 case 5:
-                    DeleteStudent.delete(sc); // pass Scanner
+                    DeleteStudent.delete(sc);
                     break;
                 case 6:
                     System.out.println("Exiting the program...");
@@ -50,6 +54,6 @@ public class Main {
 
         } while (choice != 6);
 
-        ; // Close only at the very end
+        sc.close();
     }
 }
